@@ -1,0 +1,10 @@
+
+
+[
+  { "firstname": "Henry", "lastname": "Anderson", "email": "henry@gmail.com" },
+  { "firstname": "Susan", "lastname": "Davidson", "email": "susan@gmail.com" },
+  { "firstname": "Mike", "lastname": "Murphy", "email": "mm@gmail.com" },
+  { "firstname": "Carl", "lastname": "Kunkle", "email": "ckunkle@gmail.com" },
+  { "firstname": "Lea", "lastname": "Frye", "email": "leafrye@gmail.com" },
+  { "firstname": "Angelica", "lastname": "Young", "email": "angyoung@gmail.com" }
+]
