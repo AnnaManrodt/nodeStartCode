@@ -29,6 +29,37 @@ router.get("/customer/:id", async (req, res) => {
     }
 })
 
+//All Login request are handled here
+router.post("/login", async (req, res) => {
+    let emailCheck
+        try {
+            emailCheck = await Customer.findOne(req.body)
+            where: {
+                email: req.body.email
+            }
+        } catch (err) {
+            res.status(400).json({ status: "error" })
+        }
+
+        if(!emailCheck){
+            return res.status(401).json({status: "error"})
+        }
+        //if we are this far then the email matched 
+        const hashedPassword = emailCheck.password;
+
+        //time to verify the hashed password
+        const verified = await bcrypt.compare(req.body.password, hashedPassword)
+
+        if(verified){
+            res.status(200).json({status: "sucess"})
+        }
+        else{
+            res.status(400).json({ status: "error" })
+        }
+    })
+
+
+
 // Create customer
 router.post("/", async (req, res) => {
 // const newPassword = await encrptPassword(req.body.password)
