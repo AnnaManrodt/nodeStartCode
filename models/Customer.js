@@ -1,7 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const bcrypt = require('../config/connection');
 
-class Customer extends Model {}
+class Customer extends Model { }
 
 Customer.init(
   {
@@ -19,6 +20,21 @@ Customer.init(
     }
   },
   {
+
+    //this is hashing at the data base level 
+    hooks: {
+      beforeCreate: async (customerData) => {
+        customerData.password = await bcrypt.hash(customerData.password, 10);
+        return customerData;
+      },
+      beforeUpdate: async (customerData) => {
+        if (customerData.password) {
+
+          customerData.password = await bcrypt.hash(customerData.password, 10);
+          return customerData;
+        }
+      },
+    },
     sequelize,
     timestamps: false,
     underscored: true,

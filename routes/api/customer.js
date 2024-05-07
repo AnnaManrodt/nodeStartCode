@@ -3,10 +3,10 @@ const bcrypt = require("bcrypt");
 const Customer = require("../../models/Customer");
 
 
-async function encrptPassword(pw){
-    const result = await bcrypt.hash(pw, 10)
-    return result
-}
+// async function encrptPassword(pw){
+//     const result = await bcrypt.hash(pw, 10)
+//     return result
+// } this was incryting htat password see the modal for the better way 
 
 
 // Get all customers
@@ -31,8 +31,8 @@ router.get("/customer/:id", async (req, res) => {
 
 // Create customer
 router.post("/", async (req, res) => {
-const newPassword = await encrptPassword(req.body.password)
-req.body.password = newPassword;
+// const newPassword = await encrptPassword(req.body.password)
+// req.body.password = newPassword; is part of the incytpions on line 6
 
     try {
         const result = await Customer.create(req.body)
